@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'shop',
+
 ]
 
 MIDDLEWARE = [
@@ -54,7 +56,7 @@ ROOT_URLCONF = 'Coffee.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR/'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -111,13 +113,38 @@ USE_I18N = True
 
 USE_TZ = True
 
-
+USE_TZ = True  # Enable timezone support
+TIME_ZONE = 'Asia/Kathmandu'  # Set default timezone
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS=[
+    BASE_DIR / "static",
+]
+# Media files settings
+MEDIA_URL = '/images/'
+MEDIA_ROOT = 'media'  # Use a relative path or an absolute path if needed
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
+
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

@@ -16,7 +16,37 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+# for .html url
+from shop.views import home,menu,add,delete,manage,order,edit,customer,delete0
+# for uplaoding images
+from django.conf.urls.static import static
+from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',home,name='home'),
+    path('home/',home,name='home'),
+    path('menu/',menu,name='menu'),
+
+
+
+    path('manage/',manage,name='manage'),
+
+    path('add/',add,name='add'),
+    path('edit/<int:pk>/',edit,name='edit'),
+    path('delete/<int:pk>/',delete,name='delete'),
+    path('delete0/<int:pk>/',delete0,name='delete0'),
+
+
+
+    path('customer/',customer,name='customer'),
+
+    path('order/<int:pk>/',order,name='order'),
+
+
+
+
+
+
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

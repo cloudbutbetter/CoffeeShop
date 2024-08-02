@@ -1,0 +1,61 @@
+{% include 'header.html' %}
+
+<div class="main-content">
+    <section class="manage-coffee-menu">
+        <div class="container">
+            <div class="text-center">
+                <h2>Order Details</h2>
+                <!-- Coffee Menu Table -->
+                <a href="{% url 'add' %}" class="btn btn-primary add-coffee-button">Add Coffee</a>
+
+            </div>
+            <table class="coffee-menu-table">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Title</th>
+                        <th>Price</th>
+                        <th>Qty</th>
+                        <th>Time</th>
+
+                        <th>Customer_Name</th>
+                        <th>Contact</th>
+                        <th>Email</th>
+                        <th>Address</th>
+
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in Orders %}
+                    <tr>
+                        <td>
+                            {% if order.image %}
+                            <img src="{{ order.image.url }}" alt="{{ order.name }}" class="coffee-image">
+                            {% else %}
+                            <div class="no-image">No Image</div>
+                            {% endif %}
+                        </td>
+                        <td>{{ order.title }}</td>
+                        <td>{{ order.price }}</td>
+                        <td>{{ order.quantity }}</td>
+                        <td>{{ order.time }}</td>
+                        <td>{{ order.customer }}</td>
+                        <td>{{ order.phone }}</td>
+                        <td>{{ order.email }}</td>
+                        <td>{{ order.address }}</td>
+                        <td>
+                            <a href="{% url 'delete' order.id %}" class="btn btn-danger">Delete</a>
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </section>
+</div>
+
+{% include 'footer.html' %}

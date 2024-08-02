@@ -1,0 +1,60 @@
+{% include 'header.html' %}
+
+
+<section class="coffee-search">
+    <h2 class="text-center text-white">Fill this form to confirm your order.</h2>
+
+    <div class="container">
+
+
+        <form method="POST" class="order">
+            {% csrf_token %}
+            <fieldset>
+                <legend>Selected coffee</legend>
+
+                <div name="image" class="coffee-menu-img">
+                    {% if order.image %}
+                    <img src="{{ order.image.url }}" alt="No Image Added" class="img-responsive img-curve">
+                    {% else %}
+                    <div class="error">Image not available.</div>
+                    {% endif %}
+                </div>
+
+                <div class="coffee-menu-desc">
+                    <h3 class="coffee-name">{{ order.name }}</h3>
+                    <p name="price" class="coffee-price">Rs. {{ order.price }}</p>
+
+                    <div class="order-label">Quantity</div>
+                    <input type="number" name="quantity" class="input-qty" value="1" required>
+
+                    <!-- Hidden inputs to include title and price in form submission -->
+                    <input type="hidden" name="title" value="{{ order.name }}">
+                    <input type="hidden" name="price" value="{{ order.price }}">
+                </div>
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Customer Details</legend>
+                <div class="order-label">Full Name</div>
+                <input type="text" name="customer" placeholder="E.g. Badal Tamang" class="input-responsive" required>
+
+                <div class="order-label">Phone Number</div>
+                <input type="tel" name="phone" placeholder="E.g. 98xxxxxxxx" class="input-responsive" required>
+
+                <div class="order-label">Email</div>
+                <input type="email" name="email" placeholder="E.g. kaizoku17719@.com" class="input-responsive" required>
+
+                <div class="order-label">Address</div>
+                <textarea name="address" rows="10" placeholder="E.g. Rapti-4,Chitwan" class="input-responsive"
+                    required></textarea>
+
+                <input type="submit" name="submit" value="Confirm Order" class="btn btn-primary">
+            </fieldset>
+
+        </form>
+
+    </div>
+</section>
+
+{% include 'footer.html' %}

@@ -1,0 +1,49 @@
+{% include 'header.html' %}
+
+<div class="main-content">
+    <section class="manage-coffee-menu">
+        <div class="container">
+            <div class="text-center">
+                <h2>Manage Coffee Menu</h2>
+                <!-- Coffee Menu Table -->
+                <a href="{% url 'add' %}" class="btn btn-primary">Add Coffee</a>
+                <a href="{% url 'customer' %}" class="btn btn-primary">Order Details</a>
+            </div>
+            <table class="coffee-menu-table">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Title</th>
+                        <th>Price</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for coffee in coffees %}
+                    <tr>
+                        <td>
+                            {% if coffee.image %}
+                            <img src="{{ coffee.image.url }}" alt="{{ coffee.name }}" class="coffee-image">
+                            {% else %}
+                            <div class="no-image">No Image</div>
+                            {% endif %}
+                        </td>
+                        <td>{{ coffee.name }}</td>
+                        <td>{{ coffee.price }}</td>
+                        <td>{{ coffee.description }}</td>
+                        <td>
+                            <a href="{% url 'edit' coffee.id %}" class="btn btn-secondary">Edit</a>
+                            <a href="{% url 'delete0' coffee.id %}" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </section>
+</div>
+
+{% include 'footer.html' %}

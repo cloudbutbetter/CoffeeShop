@@ -1,0 +1,42 @@
+{% include 'header.html' %}
+
+
+<div class="main-content">
+    <section class="coffee-menu">
+        <h2 class="text-center">Coffee Menu</h2>
+        <div class="container ">
+
+            {% for menu in Menus %}
+            <div class="coffee-menu-box">
+                <div class="coffee-menu-image">
+
+                    {% if menu.image %}
+                    <img src="{{ menu.image.url }}" alt="{{ menu.name }}">
+
+                    {% else %}
+                    <div class="error">Image not available.</div>
+                    {% endif %}
+                </div>
+
+                <div class="coffee-menu-description">
+                    <h3>{{menu.name}}</h3>
+                    <p class="coffee-price">{{menu.price}}</p>
+                    <p class="coffee-details">{{menu.description}}</p>
+                    <br>
+                    <a href="{% url 'order' pk=menu.id %}" class="btn btn-primary btn-curve">Order
+                        Now</a>
+                </div>
+
+            </div>
+
+            {% endfor %}
+        </div>
+    </section>
+
+</div>
+
+
+
+
+
+{% include 'footer.html' %}
